@@ -40,8 +40,10 @@ func (s *convertRoman) GroupingRoman(list []string, remain int, minor, majorOne,
 					i++
 					str = str + list[i+1]
 					if i+1 < len(list) && list[i] == list[i+1] {
-						return result, i, errors.New("over 4 charecter")
+						return result, i, errors.New("valid Roman Numeral")
 					}
+				} else if i+1 < len(list) {
+					return result, i, errors.New("valid Roman Numeral")
 				}
 
 			} else {
@@ -72,11 +74,11 @@ func (s *convertRoman) GroupingRoman(list []string, remain int, minor, majorOne,
 				i++
 				str = str + list[i]
 				if i+1 < len(list) && list[i] == list[i+1] {
-					return result, i, errors.New("over 4 charecter")
+					return result, i, errors.New("valid Roman Numeral ")
 				}
 
-			} else if list[i+1] == majorOne || list[i+1] == majorTwo {
-				return result, i, errors.New("Major over")
+			} else if i+1 < len(list) && (list[i+1] == majorOne || list[i+1] == majorTwo) {
+				return result, i, errors.New("valid Roman Numeral ")
 			}
 			result = append(result, str)
 			remainIndex = i
